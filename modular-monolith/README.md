@@ -1,7 +1,7 @@
 # Microservices challenges
 - Network latency
 - Message serialization
-- Interservice communication
+- Inter-service communication
 - Data consistency
 
 ### Incremental design approach 
@@ -13,10 +13,10 @@ communication that they lose the benefits of being independent
 ### Comparison
 | Trade-offs  | Layered | Microservices | Modular Monolith |
 |:------------|:-------:|:-------------:|:----------------:|
-| Modularity  |   ❌    |   ✔️️         |         ✔️️       |
-| Cost        |    $    |      $$$         |      $        |
-| Scalability |   ❌    |     ✔️️        |        ❌       |
-| Simplicity  |   ✔️    |      ❌       |        ✔️️       |
+| Modularity  |    ❌    |      ✔️️      |       ✔️️        |
+| Cost        |    $    |      $$$      |        $         |
+| Scalability |    ❌    |      ✔️️      |        ❌         |
+| Simplicity  |   ✔️    |       ❌       |       ✔️️        |
 
 ## Create project
 create the solution
@@ -53,3 +53,8 @@ add framework reference to library project
 <FrameworkReference Include="Microsoft.AspNetCore.App" />
 </ItemGroup>
 ```
+add FastEndpoints to projects
+```zsh
+dotnet add src/API/API.csproj package FastEndpoints
+dotnet add src/Books/Books.csproj package FastEndpoints
+``` 
