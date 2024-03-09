@@ -4,8 +4,8 @@
 - Inter-service communication
 - Data consistency
 
-### Incremental design approach 
-Monolith is gradually broken into microservices. <br/> 
+### Incremental design approach
+Monolith is gradually broken into microservices. <br/>
 A common pitfall is ending up what is often termed as a distributed monolith.
 This happens when services are so tightly coupled in terms of functionality and
 communication that they lose the benefits of being independent
@@ -18,6 +18,15 @@ communication that they lose the benefits of being independent
 | Scalability |    ❌    |      ✔️️      |        ❌         |
 | Simplicity  |   ✔️    |       ❌       |       ✔️️        |
 
+### Install global tools
+```zsh
+dotnet tool install -g dotnet-ef
+dotnet tool install -g dotnet-format
+```
+### include dotnet global tools path in PATH
+```zsh
+echo -n 'export PATH=$PATH:$HOME/.dotnet/tools' >> ~/.zshrc
+```
 ## Create project
 create the solution
 ```zsh
@@ -57,4 +66,41 @@ add FastEndpoints to projects
 ```zsh
 dotnet add src/API/API.csproj package FastEndpoints
 dotnet add src/Books/Books.csproj package FastEndpoints
+```
+add Ardalis.GuardClauses to project Books
+```zsh
+dotnet add src/Books/Books.csproj package Ardalis.GuardClauses
+```
+add Microsoft.EntityFrameworkCore to project Books
+```zsh
+dotnet add src/Books/Books.csproj package Microsoft.EntityFrameworkCore
+```
+add Microsoft.EntityFrameworkCore.SqlServer to project Books
+```zsh
+dotnet add src/Books/Books.csproj package Microsoft.EntityFrameworkCore.SqlServer
+```
+add Microsoft.EntityFrameworkCore.Design to project API
+```zsh
+dotnet add src/API/API.csproj package Microsoft.EntityFrameworkCore.Design
+```
+add migration
+```zsh
+dotnet ef migrations add Initial -c BookDbContext --project src/Books/Books.csproj --startup-project src/API/API.csproj -o Data/Migrations
+```
+apply migration
+```zsh
+dotnet ef database update -c BookDbContext --project src/Books/Books.csproj --startup-project src/API/API.csproj
+```
+add packages for testing
+```bash
+dotnet add tests/Books.Tests/Books.Tests.csproj package FluentAssertions
+dotnet add tests/Books.Tests/Books.Tests.csproj package FastEndpoints.Testing
+```
+add API project as reference to test project
+```zsh
+dotnet add tests/Books.Tests/Books.Tests.csproj reference src/API/API.csproj
+```
+apply migration for testing
+```zsh
+dotnet ef database update -c BookDbContext --project src/Books/Books.csproj --startup-project src/API/API.csproj -- --environment Testing
 ``` 

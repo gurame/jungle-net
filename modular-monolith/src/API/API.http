@@ -1,6 +1,35 @@
 @API_HostAddress = http://localhost:5006
 
-GET {{API_HostAddress}}/weatherforecast/
+GET {{API_HostAddress}}/books/
 Accept: application/json
+###
 
+GET {{API_HostAddress}}/books/1904b531-53c9-4376-8da8-3122aa436801
+Accept: application/json
+###
+
+POST {{API_HostAddress}}/books
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "2004b531-53c9-4376-8da8-3122aa436801",
+  "title": "Modular Monoliths",
+  "author": "Gurame",
+  "price": "29.99"
+}
+###
+
+POST {{API_HostAddress}}/books/2004b531-53c9-4376-8da8-3122aa436801/pricehistory
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "2004b531-53c9-4376-8da8-3122aa436801",
+  "newPrice": "-19.99"
+}
+###
+
+DELETE {{API_HostAddress}}/books/2004b531-53c9-4376-8da8-3122aa436801
+Accept: application/json
 ###
