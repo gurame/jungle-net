@@ -4,8 +4,8 @@ namespace Books.Data;
 
 internal class EfBookRepository : IBookRepository
 {
-  private readonly BookDbContext _dbContext;
-  public EfBookRepository(BookDbContext dbContext)
+  private readonly BooksDbContext _dbContext;
+  public EfBookRepository(BooksDbContext dbContext)
   {
     _dbContext = dbContext;
   }

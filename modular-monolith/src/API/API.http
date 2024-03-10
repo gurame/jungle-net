@@ -1,4 +1,4 @@
-@API_HostAddress = http://localhost:5006
+@API_HostAddress = https://localhost:7253
 
 GET {{API_HostAddress}}/books/
 Accept: application/json
@@ -32,4 +32,26 @@ Content-Type: application/json
 
 DELETE {{API_HostAddress}}/books/2004b531-53c9-4376-8da8-3122aa436801
 Accept: application/json
+###
+
+POST {{API_HostAddress}}/users
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "gurame@gurame.net",
+  "password": "P@$$w0rd"
+}
+
+###
+
+POST {{API_HostAddress}}/users/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "gurame@gurame.net",
+  "password": "P@$$w0rd"
+}
+
 ###

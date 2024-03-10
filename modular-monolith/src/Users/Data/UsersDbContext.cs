@@ -1,20 +1,22 @@
 ﻿using System.Reflection;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Books.Data;
+namespace Users.Data;
 
-public class BookDbContext : DbContext
+internal class UsersDbContext : IdentityDbContext
 {
-  internal DbSet<Book> Books { get; set; }
-
-  public BookDbContext(DbContextOptions options) : base(options)
+  public UsersDbContext(DbContextOptions options) : base(options)
   {
+    
   }
-
+  internal DbSet<ApplicationUser> ApplicationUsers { get; set; }
+  
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
-    modelBuilder.HasDefaultSchema("Books");
+    modelBuilder.HasDefaultSchema("Users");
     modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    base.OnModelCreating(modelBuilder);
   }
 
   protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
@@ -23,3 +25,4 @@ public class BookDbContext : DbContext
       .HavePrecision(18, 6);
   }
 }
+

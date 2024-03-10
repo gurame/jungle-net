@@ -85,11 +85,11 @@ dotnet add src/API/API.csproj package Microsoft.EntityFrameworkCore.Design
 ```
 add migration
 ```zsh
-dotnet ef migrations add Initial -c BookDbContext --project src/Books/Books.csproj --startup-project src/API/API.csproj -o Data/Migrations
+dotnet ef migrations add Initial -c BooksDbContext --project src/Books/Books.csproj --startup-project src/API/API.csproj -o Data/Migrations
 ```
 apply migration
 ```zsh
-dotnet ef database update -c BookDbContext --project src/Books/Books.csproj --startup-project src/API/API.csproj
+dotnet ef database update -c BooksDbContext --project src/Books/Books.csproj --startup-project src/API/API.csproj
 ```
 add packages for testing
 ```bash
@@ -102,5 +102,13 @@ dotnet add tests/Books.Tests/Books.Tests.csproj reference src/API/API.csproj
 ```
 apply migration for testing
 ```zsh
-dotnet ef database update -c BookDbContext --project src/Books/Books.csproj --startup-project src/API/API.csproj -- --environment Testing
-``` 
+dotnet ef database update -c BooksDbContext --project src/Books/Books.csproj --startup-project src/API/API.csproj -- --environment Testing
+```
+add migration for User Module
+```zsh
+dotnet ef migrations add Initial -c UsersDbContext --project src/Users/Users.csproj --startup-project src/API/API.csproj -o Data/Migrations
+```
+apply migration for User Module
+```zsh
+dotnet ef database update -c UsersDbContext --project src/Users/Users.csproj --startup-project src/API/API.csproj
+```
