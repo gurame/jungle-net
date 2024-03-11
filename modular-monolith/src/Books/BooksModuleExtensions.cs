@@ -1,4 +1,5 @@
-﻿using Books.Data;
+﻿using System.Reflection;
+using Books.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,10 +9,9 @@ namespace Books;
 
 public static class BooksModuleExtensions
 {
-  public static IServiceCollection AddBooksModuleServices(
-    this IServiceCollection services,
+  public static IServiceCollection AddBooksModuleServices(this IServiceCollection services,
     ConfigurationManager config,
-    ILogger logger)
+    ILogger logger, List<Assembly> mediatRAssemblies)
   {
     string? connectionString = config.GetConnectionString("BooksConnectionString");
     services.AddDbContext<BooksDbContext>(x =>
@@ -20,6 +20,8 @@ public static class BooksModuleExtensions
     });
     services.AddScoped<IBookRepository, EfBookRepository>();
     services.AddScoped<IBookService, BookService>();
+    
+    mediatRAssemblies.Add(typeof(BooksModuleExtensions).Assembly);
     
     logger.Information("{Module} module services registered", "Books");
     return services;

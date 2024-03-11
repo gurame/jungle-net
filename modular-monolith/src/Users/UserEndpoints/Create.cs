@@ -1,7 +1,7 @@
 ﻿using FastEndpoints;
 using Microsoft.AspNetCore.Identity;
 
-namespace Users.Endpoints;
+namespace Users.UserEndpoints;
 
 internal class Create : Endpoint<CreateUserRequest>
 {

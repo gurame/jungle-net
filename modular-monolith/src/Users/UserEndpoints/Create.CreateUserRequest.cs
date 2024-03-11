@@ -1,3 +1,3 @@
-﻿namespace Users.Endpoints;
+﻿namespace Users.UserEndpoints;
 
 public record CreateUserRequest(string Email, string Password);

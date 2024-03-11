@@ -55,3 +55,23 @@ Content-Type: application/json
 }
 
 ###
+
+@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJndXJhbWVAZ3VyYW1lLm5ldCIsImlhdCI6MTcxMDExMzkyNiwiZXhwIjoxNzEwMTE3NTI2LCJuYmYiOjE3MTAxMTM5MjZ9.bKT3N3LVaFV9peMUor6VSUnqxiUj5tHE5YG_BzoD27E
+
+# Add item to cart
+POST {{API_HostAddress}}/cart
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "bookId": "2004b531-53c9-4376-8da8-3122aa436801",
+  "quantity": 3
+}
+
+###
+
+# List items in cart
+GET {{API_HostAddress}}/cart
+Accept: application/json
+Authorization: Bearer {{token}}

@@ -1,4 +1,5 @@
-﻿using Books;
+﻿using System.Reflection;
+using Books;
 using Users;
 using FastEndpoints;
 using FastEndpoints.Security;
@@ -28,8 +29,13 @@ builder.Services.AddFastEndpoints()
   .SwaggerDocument();
 
 // Add module services
-builder.Services.AddBooksModuleServices(builder.Configuration, logger);
-builder.Services.AddUsersModuleServices(builder.Configuration, logger);
+List<Assembly> mediatRAssemblies = [typeof(Program).Assembly];
+builder.Services.AddBooksModuleServices(builder.Configuration, logger, mediatRAssemblies);
+builder.Services.AddUsersModuleServices(builder.Configuration, logger, mediatRAssemblies);
+
+// Set up mediatR
+builder.Services.AddMediatR(cfg =>
+  cfg.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray()));
 
 var app = builder.Build();
 

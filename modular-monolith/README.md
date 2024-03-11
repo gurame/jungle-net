@@ -108,7 +108,19 @@ add migration for User Module
 ```zsh
 dotnet ef migrations add Initial -c UsersDbContext --project src/Users/Users.csproj --startup-project src/API/API.csproj -o Data/Migrations
 ```
+##
 apply migration for User Module
 ```zsh
 dotnet ef database update -c UsersDbContext --project src/Users/Users.csproj --startup-project src/API/API.csproj
 ```
+##
+add migration for CarItem in User Module
+```zsh
+dotnet ef migrations add CartItem -c UsersDbContext --project src/Users/Users.csproj --startup-project src/API/API.csproj -o Data/Migrations
+```
+##
+apply migration for User Module
+```zsh
+dotnet ef database update -c UsersDbContext --project src/Users/Users.csproj --startup-project src/API/API.csproj
+```
+## 

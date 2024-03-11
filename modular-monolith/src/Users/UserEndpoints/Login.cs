@@ -3,7 +3,7 @@ using FastEndpoints.Security;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
-namespace Users.Endpoints;
+namespace Users.UserEndpoints;
 
 internal class Login : Endpoint<CreateUserRequest>
 {
